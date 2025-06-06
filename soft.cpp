@@ -2,18 +2,42 @@
 using namespace std;
 
 
+float porcentajePedidosPesoMedio(float PesoDelPedido[], int totalPedidos) {
+    int contador = 0;
 
-
-
-float porcentajeentre50y100 (float PesoDelPedido, int i){
-    
-    while (i==0){
-        
-
+    for (int i = 0; i < totalPedidos; i++) {
+        if (PesoDelPedido[i] >= 50 && PesoDelPedido[i] <= 100) {
+            contador++;
+        }
     }
+
+    if (totalPedidos == 0) return 0;
+
+    return (contador * 100.0) / totalPedidos;
+}
+
+
+float costototalcordoba (float CostoDelPedido[], string ProvinciaDestino[], int j){
+float costototal=0;
+    for (int i = 0; i < j; i++) {
+        if ( ProvinciaDestino[i]=="cordoba") {
+            costototal+=CostoDelPedido[i];
+        }
+    }
+    return costototal;
+
 
 }
 
+
+float porcentajepedidosraul (string Responsable[], int j){
+int contador=0;
+
+for(int i=0;i<j;j++){
+
+}
+
+}
 
 int main(){
     int CodigoDePedido[100], DNIResponsable[100], i=0, j=0;
@@ -59,7 +83,10 @@ int main(){
 
 
 
+float porcentaje = porcentajePedidosPesoMedio(PesoDelPedido, j);
+cout << "El porcentaje de pedidos entre 50 y 100 kg es: " << porcentaje << "%" << endl;
 
+cout<<"El costo total de los pedidos que llegaron a la provincia de Córdoba es: "<<costototalcordoba (CostoDelPedido, ProvinciaDestino, j)<<endl;
 
 
 
