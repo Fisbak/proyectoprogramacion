@@ -33,9 +33,15 @@ float costototal=0;
 float porcentajepedidosraul (string Responsable[], int j){
 int contador=0;
 
-for(int i=0;i<j;j++){
+for(int i=0;i<j;i++){
 
+    
+    if(Responsable [i] == "raul"){
+        contador++;
+    }
 }
+
+return (contador*100.0) / j;
 
 }
 
@@ -88,7 +94,7 @@ cout << "El porcentaje de pedidos entre 50 y 100 kg es: " << porcentaje << "%" <
 
 cout<<"El costo total de los pedidos que llegaron a la provincia de Córdoba es: "<<costototalcordoba (CostoDelPedido, ProvinciaDestino, j)<<endl;
 
-
+cout<<"El porcentaje de pedidos facrurados por Raúl es: "<< porcentajepedidosraul (Responsable, j)<< "%" <<endl;
 
 
 }
