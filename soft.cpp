@@ -4,8 +4,15 @@ using namespace std;
 
 
 
-   
 
+float porcentajeentre50y100 (float PesoDelPedido, int i){
+    
+    while (i==0){
+        
+
+    }
+
+}
 
 
 int main(){
