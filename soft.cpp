@@ -7,12 +7,13 @@ using namespace std;
 int main(){
     int CodigoDePedido[100], DNIResponsable[100], i=0, j=0;
     float PesoDelPedido[100], CostoDelPedido[100];
-    string ProvinciaDestino[100], Responsable[100], Provinciarecibe[100];
+    string ProvinciaDestino[100], Responsable[100], ProvinciaOrigen[100];
 
 
-    while(i=0){
-        cout<<"Ingrese la provincia de la fabrica que recibe el pedido del pedido "<<j+1<<endl;
-        cin>>Provinciarecibe[j];
+    while(i==0){
+
+        cout<<"Ingrese la provincia en la que se fabrico el pedido "<<j+1<<" (poner el nombre todo junto, ej: Buenos Aires seria BuenosAires)"<<endl;
+        cin>>ProvinciaOrigen[j];
 
         cout<<"Ingrese el codigo del pedido "<<j+1<<endl;
         cin>>CodigoDePedido[j];
@@ -20,13 +21,13 @@ int main(){
         cout<<"Ingrese el peso(en kilogramos) del pedido "<<j+1<<endl;
         cin>>PesoDelPedido[j];
 
-        cout<<"Ingrese la provincia a la que debe llegar el pedido "<<j+1<<endl;
+        cout<<"Ingrese la provincia a la que debe llegar el pedido "<<j+1<<" (poner el nombre todo junto, ej: Buenos Aires seria BuenosAires)"<<endl;
         cin>>ProvinciaDestino[j];
 
         cout<<"Ingrese el costo del pedido "<<j+1<<endl;
         cin>>CostoDelPedido[j];
 
-        cout<<"Ingrese el responsable del pedido "<<j+1<<endl;
+        cout<<"Ingrese el responsable del pedido "<<j+1<<" (ingresar solo el nombre)"<<endl;
         cin>>Responsable[j];
 
         cout<<"Ingrese el DNI del responsable del pedido "<<j+1<<endl;
@@ -40,7 +41,7 @@ int main(){
 
 
 
-        
+
     }
 
 
