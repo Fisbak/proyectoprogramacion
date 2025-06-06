@@ -21,14 +21,26 @@ int main(){
         cin>>PesoDelPedido[j];
 
         cout<<"Ingrese la provincia a la que debe llegar el pedido "<<j+1<<endl;
-        cin>>CodigoDePedido[j];
+        cin>>ProvinciaDestino[j];
+
+        cout<<"Ingrese el costo del pedido "<<j+1<<endl;
+        cin>>CostoDelPedido[j];
+
+        cout<<"Ingrese el responsable del pedido "<<j+1<<endl;
+        cin>>Responsable[j];
+
+        cout<<"Ingrese el DNI del responsable del pedido "<<j+1<<endl;
+        cin>>DNIResponsable[j];
+
+        j++;
+
+        cout<<"Desea continuar cargando pedidos? (si=0/No=1)"<<endl;
+        cin>>i;
 
 
 
 
-
-
-
+        
     }
 
 
