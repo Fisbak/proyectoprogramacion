@@ -4,6 +4,21 @@ using namespace std;
 
 
 
+
+int PedidosNombreDeCarlos(string responsable[100], int J){
+    int cont=0, i;
+
+    for(i=0; i<J; i++){
+        if(responsable[i]=="Carlos"||responsable[i]=="carlos"){
+            cont++;
+        }
+    }
+    return cont;
+}
+
+
+
+
 int main(){
     int CodigoDePedido[100], DNIResponsable[100], i=0, j=0;
     float PesoDelPedido[100], CostoDelPedido[100];
