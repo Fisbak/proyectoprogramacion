@@ -19,6 +19,26 @@ int PedidosNombreDeCarlos(string responsable[100], int J){
 
 
 
+
+
+
+
+
+int DNIpedidoPesado(int DNIdelResp[100], float Pesopedido[100], int  J){
+    float max=0;
+    int i, Dnimax=0;
+
+    for(i=0; i<J ;i++){
+        if(max<Pesopedido[i]){
+            max=Pesopedido[i];
+            Dnimax=DNIdelResp[i];
+        }
+    }
+
+    return Dnimax;
+}
+
+
 int main(){
     int CodigoDePedido[100], DNIResponsable[100], i=0, j=0;
     float PesoDelPedido[100], CostoDelPedido[100];
