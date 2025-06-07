@@ -1,6 +1,95 @@
 #include <iostream>
 using namespace std;
 
+int PedidosNombreDeCarlos(string responsable[100], int J){
+    int cont=0, i;
+
+    for(i=0; i<J; i++){
+        if(responsable[i]=="Carlos"||responsable[i]=="carlos"){
+            cont++;
+        }
+    }
+    return cont;
+}
+
+float porcentajePedidosPesoMedio(float PesoDelPedido[], int totalPedidos) {
+    int contador = 0;
+
+    for (int i = 0; i < totalPedidos; i++) {
+        if (PesoDelPedido[i] >= 50 && PesoDelPedido[i] <= 100) {
+            contador++;
+        }
+    }
+
+    if (totalPedidos == 0) return 0;
+
+    return (contador * 100.0) / totalPedidos;
+}
+
+int DNIpedidoPesado(int DNIdelResp[100], float Pesopedido[100], int  J){
+    float max=0;
+    int i, Dnimax;
+
+    for(i=0; i<J ;i++){
+        if(max<Pesopedido[i]){
+            max=Pesopedido[i];
+            Dnimax=DNIdelResp[i];
+        }
+    }
+
+    return Dnimax;
+}
+
+string PedidomenosPesadoJujuy(int J, string responsable[100], float peso[100], string provdestino[100]){
+    float min=10000000;
+    int i, valormin;
+
+    for(i=0; i<J; i++){
+        if(provdestino[i]=="Jujuy"||provdestino[i]=="jujuy"){
+            if(min>peso[i]){
+                min=peso[i];
+                valormin=i;
+            }
+        }
+
+    }
+
+    return responsable[valormin];
+}
+
+int dnidelcodigo(int Dni[100], int codigo[100], int J){
+    int i, num;
+    
+    for(i=0; i < J; i++){
+        if(codigo[i] == 0012655){
+            num=Dni[i];
+        }
+
+    }
+    return num;
+}
+
+float costototalcordoba (float CostoDelPedido[], string ProvinciaDestino[], int j){
+    float costototal=0;
+    for (int i = 0; i < j; i++) {
+        if ( ProvinciaDestino[i]=="cordoba") {
+            costototal+=CostoDelPedido[i];
+        }
+    }
+    return costototal;
+}
+
+float porcentajepedidosraul (string Responsable[], int j){
+    int contador=0;
+
+    for(int i=0;i<j;i++){
+        if(Responsable [i] == "raul"){
+            contador++;
+        }
+    }
+    return (contador*100.0) / j;
+}
+
 
 
 
@@ -14,6 +103,7 @@ int main(){
 
         cout<<"Ingrese la provincia en la que se fabrico el pedido "<<j+1<<" (poner el nombre todo junto, ej: Buenos Aires seria BuenosAires)"<<endl;
         cin>>ProvinciaOrigen[j];
+
 
         cout<<"Ingrese el codigo del pedido "<<j+1<<endl;
         cin>>CodigoDePedido[j];
@@ -37,6 +127,7 @@ int main(){
 
         cout<<"Desea continuar cargando pedidos? (si=0/No=1)"<<endl;
         cin>>i;
+        
 
 
 
@@ -46,9 +137,20 @@ int main(){
 
 
 
+    cout<<"La cantidad de pedidos facturados a nombre de Carlos son: "<<PedidosNombreDeCarlos(Responsable, j)<<endl;
 
+    float porcentaje = porcentajePedidosPesoMedio(PesoDelPedido, j);
+    cout << "El porcentaje de pedidos entre 50 y 100 kg es: " << porcentaje << "%" << endl;
+    
+    cout<<"El DNI del responsable que facturo el pedido mas pesado es: "<<DNIpedidoPesado(DNIResponsable, PesoDelPedido, j)<<endl;
 
+    cout<<"El pedido mas liviano en Jujuy es de: "<<PedidomenosPesadoJujuy(j, Responsable, PesoDelPedido, ProvinciaDestino)<<endl;
 
+    cout<<"El DNI del responsable que facturo el pedido con codigo 0012655 es: "<<dnidelcodigo(DNIResponsable, CodigoDePedido, j)<<endl;
+
+    cout<<"El costo total de los pedidos que llegaron a la provincia de Cordoba es: "<<costototalcordoba (CostoDelPedido, ProvinciaDestino, j)<<endl;
+
+    cout<<"El porcentaje de pedidos facrurados por Raul es: "<< porcentajepedidosraul (Responsable, j)<< "%" <<endl;
 
 
 }
