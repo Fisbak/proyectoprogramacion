@@ -57,7 +57,7 @@ string PedidomenosPesadoJujuy(int J, string responsable[100], float peso[100], s
     if (valormin>-1){
     return responsable[valormin];
     }else{
-        return "No hay pedidos cuyo destino sea Jujuy"
+        return "No hay pedidos cuyo destino sea Jujuy";
     }
 }
 
@@ -119,18 +119,24 @@ int Pedidosmenores50Kg(float pesodelpedido[], int totalPedidos) {
     return contador;
 }
 
-int CodigoCatamarca(int J, int Codigos[], float Peso[], string prvinciadestino[]){
+int CodigoCatamarca(int J, int Codigos[], float Peso[], string provinciadestino[]){
+    int codeliv=-1;
+    float min=100000000;
+
     for(int i=0; i < J; i++){
-        if()
-
-
-
+        if(provinciadestino[J]=="Catamarca" || provinciadestino[J]=="catamarca"){
+            if(Peso[J]<min){
+                min=Peso[J];
+                codeliv=J;
+            }
+        }
     }
 
-
-
-
-
+    if(codeliv>-1){
+        return Codigos[codeliv];
+    }else{
+        return codeliv;
+    }
 }
 
 
@@ -196,4 +202,14 @@ int main(){
     cout<<"El porcentaje de pedidos que pesan entre 90 y 120 kilos es: "<<porcentajePeso90a120(PesoDelPedido, j)<<"%"<<endl;
 
     cout<<"La cantidad de pedidos menorea a 50 kilos es: "<<Pedidosmenores50Kg(PesoDelPedido, j)<<endl;
+
+    if(CodigoCatamarca(j, CodigoDePedido, PesoDelPedido, ProvinciaDestino)==-1){
+        cout<<"No hay ningun pedido cuyo destino sea Catamarca"<<endl;
+    }else{
+        cout<<"El codigo del pedido mas liviano que llego a la provincia de Catamarca es: "<<CodigoCatamarca(j, CodigoDePedido, PesoDelPedido, ProvinciaDestino)<<endl;
+    }
+
+
+
+
 }
