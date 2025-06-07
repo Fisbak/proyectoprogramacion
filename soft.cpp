@@ -151,6 +151,27 @@ float sumafacturada=0;
     return sumafacturada;
 }
 
+
+int dnipedidocostosoushuaia (int DNIResponsable[], float CostoDelPedido[], string ProvinciaDestino[], int j ){
+    float pedidomasgrande=0;
+    int dniushuaia;
+    
+    for (int i=0;i<j;i++){
+        
+        if(ProvinciaDestino[i]=="ushuaia"){
+            if (CostoDelPedido[i]>pedidomasgrande)
+            {
+                pedidomasgrande=CostoDelPedido[i];
+                dniushuaia= DNIResponsable[i];
+            }
+            
+        }
+
+    }
+
+return dniushuaia;
+}
+
 int main(){
     int CodigoDePedido[100], DNIResponsable[100], i=0, j=0;
     float PesoDelPedido[100], CostoDelPedido[100];
@@ -217,4 +238,6 @@ int main(){
     cout<<"El porcentaje de pedidos entre 200 y 500 kilos es: "<<porcentajepedidosentre200y500kilos (PesoDelPedido,j)<<endl;
 
     cout<<"Total facturado por pedidos cuyo responsable no sea Raul: "<<pedidosquenosonderaul (Responsable, CostoDelPedido, j)<<endl;
+
+    cout<<"DNI del responsable con el pedido mas costoso dentro de la provincia de Ushuaia: " << dnipedidocostosoushuaia (DNIResponsable, CostoDelPedido, ProvinciaDestino,  j )<<endl;
 }
