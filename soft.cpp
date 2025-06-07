@@ -116,6 +116,25 @@ float Pedidosmenores50Kg(float pesodelpedido[], int totalPedidos) {
 }
 
 
+float porcentajepedidosentre200y500kilos (float PesoDelPedido[], int j ){
+    int contador=0;
+
+    
+    for(int i=0;i<j;i++){
+
+        
+        if (PesoDelPedido[i]<=500 && PesoDelPedido[i]>=200){
+            contador++;
+
+        }
+
+    }
+    return (contador *100)/j;
+
+
+}
+
+
 int main(){
     int CodigoDePedido[100], DNIResponsable[100], i=0, j=0;
     float PesoDelPedido[100], CostoDelPedido[100];
@@ -178,4 +197,6 @@ int main(){
     cout<<"El porcentaje de pedidos que pesan entre 90 y 120 kilos es: "<<porcentajePeso90a120(PesoDelPedido, j)<<"%"<<endl;
 
     cout<<"La cantidad de pedidos menorea a 50 kilos es: "<<Pedidosmenores50Kg(PesoDelPedido, j)<<endl;
+
+    cout<<"El porcentaje de pedidos entre 200 y 500 kilos es: "<<porcentajepedidosentre200y500kilos (PesoDelPedido,j)<<endl;
 }
