@@ -42,7 +42,7 @@ int DNIpedidoPesado(int DNIdelResp[100], float Pesopedido[100], int  J){
 
 string PedidomenosPesadoJujuy(int J, string responsable[100], float peso[100], string provdestino[100]){
     float min=10000000;
-    int i, valormin;
+    int i, valormin=-1;
 
     for(i=0; i<J; i++){
         if(provdestino[i]=="Jujuy"||provdestino[i]=="jujuy"){
@@ -54,7 +54,11 @@ string PedidomenosPesadoJujuy(int J, string responsable[100], float peso[100], s
 
     }
 
+    if (valormin>-1){
     return responsable[valormin];
+    }else{
+        return "No hay pedidos cuyo destino sea Jujuy"
+    }
 }
 
 int dnidelcodigo(int Dni[100], int codigo[100], int J){
@@ -104,7 +108,7 @@ float porcentajePeso90a120(float pesodelpedido[], int totalPedidos) {
     return (contador * 100.0) / totalPedidos;
 }
 
-float Pedidosmenores50Kg(float pesodelpedido[], int totalPedidos) {
+int Pedidosmenores50Kg(float pesodelpedido[], int totalPedidos) {
     int contador = 0;
    
     for (int i = 0; i < totalPedidos; i++) {
@@ -113,6 +117,20 @@ float Pedidosmenores50Kg(float pesodelpedido[], int totalPedidos) {
         }
     }
     return contador;
+}
+
+int CodigoCatamarca(int J, int Codigos[], float Peso[], string prvinciadestino[]){
+    for(int i=0; i < J; i++){
+        if()
+
+
+
+    }
+
+
+
+
+
 }
 
 
