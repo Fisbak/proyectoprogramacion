@@ -135,6 +135,22 @@ float porcentajepedidosentre200y500kilos (float PesoDelPedido[], int j ){
 }
 
 
+
+float pedidosquenosonderaul ( string Responsable[], float CostoDelPedido[], int j){
+float sumafacturada=0;
+    
+    for(int i=0; i<j;i++){
+        
+        if (Responsable[i] != "Raul"){
+            sumafacturada+= CostoDelPedido[i];
+        }
+
+
+    }
+
+    return sumafacturada;
+}
+
 int main(){
     int CodigoDePedido[100], DNIResponsable[100], i=0, j=0;
     float PesoDelPedido[100], CostoDelPedido[100];
@@ -199,4 +215,6 @@ int main(){
     cout<<"La cantidad de pedidos menorea a 50 kilos es: "<<Pedidosmenores50Kg(PesoDelPedido, j)<<endl;
 
     cout<<"El porcentaje de pedidos entre 200 y 500 kilos es: "<<porcentajepedidosentre200y500kilos (PesoDelPedido,j)<<endl;
+
+    cout<<"Total facturado por pedidos cuyo responsable no sea Raul: "<<pedidosquenosonderaul (Responsable, CostoDelPedido, j)<<endl;
 }
