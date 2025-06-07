@@ -140,6 +140,17 @@ int CodigoCatamarca(int J, int Codigos[], float Peso[], string provinciadestino[
 }
 
 
+
+
+float Totalfacturadopais(int J, float Costo[]){
+    float cont=0;
+
+    for(int i=0; i < J; i++){
+        cont=cont+Costo[i];
+    }
+    return cont;
+}
+
 int main(){
     int CodigoDePedido[100], DNIResponsable[100], i=0, j=0;
     float PesoDelPedido[100], CostoDelPedido[100];
@@ -210,6 +221,11 @@ int main(){
     }
 
 
+
+
+
+    //ej12
+    cout<<"El dinero facturado por todas las provincias es: "<<Totalfacturadopais(j, CostoDelPedido)<<"$"<<endl;
 
 
 }
