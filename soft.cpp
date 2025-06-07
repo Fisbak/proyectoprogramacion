@@ -90,7 +90,30 @@ float porcentajepedidosraul (string Responsable[], int j){
     return (contador*100.0) / j;
 }
 
+float porcentajePeso90a120(float pesodelpedido[], int totalPedidos) {
+    int contador = 0;
 
+    for (int i = 0; i < totalPedidos; i++) {
+        if (pesodelpedido[i] >= 90 && pesodelpedido[i] <= 120) {
+            contador++;
+        }
+    }
+
+    if (totalPedidos == 0) return 0;
+
+    return (contador * 100.0) / totalPedidos;
+}
+
+float Pedidosmenores50Kg(float pesodelpedido[], int totalPedidos) {
+    int contador = 0;
+   
+    for (int i = 0; i < totalPedidos; i++) {
+        if (pesodelpedido[i] < 50 ) {
+            contador++;
+        }
+    }
+    return contador;
+}
 
 
 int main(){
@@ -152,5 +175,7 @@ int main(){
 
     cout<<"El porcentaje de pedidos facrurados por Raul es: "<< porcentajepedidosraul (Responsable, j)<< "%" <<endl;
 
+    cout<<"El porcentaje de pedidos que pesan entre 90 y 120 kilos es: "<<porcentajePeso90a120(PesoDelPedido, j)<<"%"<<endl;
 
+    cout<<"La cantidad de pedidos menorea a 50 kilos es: "<<Pedidosmenores50Kg(PesoDelPedido, j)<<endl;
 }
