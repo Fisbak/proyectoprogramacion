@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-string ProvinciaMaspedidos(int J, string Provincia[]){
+void ProvinciaMaspedidos(int J, string Provincia[]){
     int bsas=0, cor=0, Juj=0, SDE=0, Sal=0, i;
 
     for(i=0; i < J; i++){
@@ -21,29 +21,38 @@ string ProvinciaMaspedidos(int J, string Provincia[]){
         {Sal++;}
 
     }
+    
+    if(bsas>cor || bsas==cor){if(bsas>Juj || bsas==Juj){if(bsas>SDE || bsas==SDE){if(bsas>Sal || bsas==Sal){ cout<< "Buenos Aires ";}}}}
 
-    if(bsas>cor){if(bsas>Juj){if(bsas>SDE){if(bsas>Sal){ return "Buenos Aires";}}}}
+    if(cor>bsas || cor==bsas){if(cor>Juj || cor==Juj){if(cor>SDE || cor==SDE){if(cor>Sal || cor==Sal){ cout<< "Cordoba ";}}}}
 
-    if(cor>bsas){if(cor>Juj){if(cor>SDE){if(cor>Sal){ return "Cordoba";}}}}
+    if(Juj>bsas || Juj==bsas){if(Juj>cor || Juj==cor){if(Juj>SDE || Juj==SDE){if(Juj>Sal || Juj==Sal){ cout<< "Jujuy ";}}}}
 
-    if(Juj>bsas){if(Juj>cor){if(Juj>SDE){if(Juj>Sal){ return "Jujuy";}}}}
+    if(SDE>bsas || SDE==bsas){if(SDE>cor || SDE==cor){if(SDE>Juj || SDE==Juj){if(SDE>Sal || SDE==Sal){ cout<< "Santiago Del Estero ";}}}}
 
-    if(SDE>bsas){if(SDE>cor){if(SDE>Juj){if(SDE>Sal){ return "Santiago Del Estero";}}}}
-
-    if(Sal>bsas){if(Sal>cor){if(Sal>SDE){if(Sal>Juj){ return "Salta";}}}}
+    if(Sal>bsas || Sal==bsas){if(Sal>cor || Sal==cor){if(Sal>SDE || Sal==SDE){if(Sal>Juj || Sal==Juj){ cout<< "Salta ";}}}}
 }
 
+void PedidosNombreDeCarlos(string responsable[100], int J) {
+    int cont = 0;
 
-int PedidosNombreDeCarlos(string responsable[], int J){
-    int cont=0, i;
-
-    for(i=0; i<J; i++){
-        if(responsable[i]=="Carlos"||responsable[i]=="carlos"){
+    for (int i = 0; i < J; i++) {
+        if (responsable[i] == "Carlos" || responsable[i] == "carlos") {
+            if (cont > 0) {
+                cout << ", ";
+            }
+            cout << "pedido " << i + 1;
             cont++;
         }
     }
-    return cont;
+
+    if (cont == 0) {
+        cout << "ninguno";
+    }
+
+    cout << "." << endl;
 }
+
 
 float porcentajePedidosPesoMedio(float PesoDelPedido[], int totalPedidos) {
     int contador = 0;
@@ -95,15 +104,15 @@ string PedidomenosPesadoJujuy(int J, string responsable[], float peso[], string 
 }
 
 int dnidelcodigo(int Dni[], int codigo[], int J){
-    int i, num;
+    int i, num=0;
     
     for(i=0; i < J; i++){
         if(codigo[i] == 0012655){
-            num=Dni[i];
+            num = J;
         }
 
     }
-    return num;
+    return Dni[num];
 }
 
 float costototalcordoba (float CostoDelPedido[], string ProvinciaDestino[], int j){
@@ -152,23 +161,23 @@ int Pedidosmenores50Kg(float pesodelpedido[], int totalPedidos) {
     return contador;
 }
 
-int CodigoCatamarca(int J, int Codigos[], float Peso[], string provinciadestino[]){
-    int codeliv=-1;
+void CodigoCatamarca(int J, int Codigos[], float Peso[], string provinciadestino[]){
+    int codeliv=-1, i;
     float min=100000000;
 
-    for(int i=0; i < J; i++){
-        if(provinciadestino[J]=="Catamarca" || provinciadestino[J]=="catamarca"){
-            if(Peso[J]<min){
-                min=Peso[J];
-                codeliv=J;
+    for(i=0; i < J; i++){
+        if(provinciadestino[i]=="Catamarca" || provinciadestino[i]=="catamarca"){
+            if(Peso[i]<min){
+                min=Peso[i];
+                codeliv=i;
             }
         }
     }
 
-    if(codeliv>-1){
-        return Codigos[codeliv];
+    if(codeliv!=-1){
+        cout<<Codigos[codeliv];
     }else{
-        return codeliv;
+        cout<<"No hay pedidos a Catamarca";
     }
 }
 
@@ -199,16 +208,12 @@ float Totalfacturadopais(int J, float Costo[]){
     return cont;
 }
 
-
-
-
-
 float pedidosquenosonderaul ( string Responsable[], float CostoDelPedido[], int j){
-float sumafacturada=0;
+    float sumafacturada=0;
     
     for(int i=0; i<j;i++){
         
-        if (Responsable[i] != "Raul"){
+        if (Responsable[i] != "raul"){
             sumafacturada+= CostoDelPedido[i];
         }
 
@@ -218,10 +223,9 @@ float sumafacturada=0;
     return sumafacturada;
 }
 
-
-int dnipedidocostosoushuaia (int DNIResponsable[], float CostoDelPedido[], string ProvinciaDestino[], int j ){
+void dnipedidocostosoushuaia (int DNIResponsable[], float CostoDelPedido[], string ProvinciaDestino[], int j ){
     float pedidomasgrande=0;
-    int dniushuaia;
+    int dniushuaia=-1;
     
     for (int i=0;i<j;i++){
         
@@ -229,15 +233,46 @@ int dnipedidocostosoushuaia (int DNIResponsable[], float CostoDelPedido[], strin
             if (CostoDelPedido[i]>pedidomasgrande)
             {
                 pedidomasgrande=CostoDelPedido[i];
-                dniushuaia= DNIResponsable[i];
+                dniushuaia= i;
             }
             
         }
 
     }
-
-return dniushuaia;
+    if(dniushuaia != -1){
+        cout<<DNIResponsable[dniushuaia];
+    }else{
+        cout<< "No hay pedidos a Ushuaia";
+    }
 }
+
+void OrdenarDNIresponsables(int  DNIResponsable[], int J) {
+    int i, u, band, Aux;
+
+    for (i = 0; i < J; i++) {
+
+        band = 0;  
+
+        while (band == 0) {
+            band = 1;
+
+            for (u = 0; u < J - 1; u++) {
+                if (DNIResponsable[u] > DNIResponsable[u + 1]) {
+                    Aux = DNIResponsable[u];
+                    DNIResponsable[u] = DNIResponsable[u + 1];
+                    DNIResponsable[u + 1] = Aux;
+                    band = 0;
+                }
+            }
+        }
+    }
+
+    for (i = 0; i < J; i++) {
+        cout << DNIResponsable[i] << " ";
+    }
+    cout << endl;
+}
+
 
 int main(){
     int CodigoDePedido[100], DNIResponsable[100], i=0, j=0;
@@ -247,7 +282,7 @@ int main(){
 
     while(i==0){
 
-        cout<<"Ingrese la provincia en la que se fabrico el pedido "<<j+1<<" (poner el nombre todo junto y en minusculas, ej: Buenos Aires seria buenosaires)"<<endl;
+        cout<<"Ingrese la provincia en la que se fabrico el pedido "<<j+1<<" (Buenos Aires, Cordoba, Jujuy, Santiago del Estero o Salta) (poner el nombre todo junto y en minusculas, ej: Buenos Aires seria buenosaires)"<<endl;
         cin>>ProvinciaOrigen[j];
 
 
@@ -263,7 +298,7 @@ int main(){
         cout<<"Ingrese el costo del pedido "<<j+1<<endl;
         cin>>CostoDelPedido[j];
 
-        cout<<"Ingrese el responsable del pedido "<<j+1<<" (ingresar solo el nombre)"<<endl;
+        cout<<"Ingrese el responsable del pedido "<<j+1<<" (ingresar solo el nombre, en minusculas)"<<endl;
         cin>>Responsable[j];
 
         cout<<"Ingrese el DNI del responsable del pedido "<<j+1<<endl;
@@ -280,10 +315,13 @@ int main(){
 
 
     }
+    
+    cout<<"La provincia/s cuya fabrica recibe mas pedidos es/son: ";
+    ProvinciaMaspedidos(j, ProvinciaOrigen);
+    cout<<endl;
 
-    cout<<"La provincia cuya fabrica recibe mas pedidos es: "<<ProvinciaMaspedidos(j, ProvinciaOrigen)<<endl;
-
-    cout<<"La cantidad de pedidos facturados a nombre de Carlos son: "<<PedidosNombreDeCarlos(Responsable, j)<<endl;
+    cout<<"Los pedidos facturados a nombre de Carlos son: "<<endl;
+    PedidosNombreDeCarlos(Responsable, j);
 
     float porcentaje = porcentajePedidosPesoMedio(PesoDelPedido, j);
     cout << "El porcentaje de pedidos entre 50 y 100 kg es: " << porcentaje << "%" << endl;
@@ -294,25 +332,29 @@ int main(){
 
     cout<<"El DNI del responsable que facturo el pedido con codigo 0012655 es: "<<dnidelcodigo(DNIResponsable, CodigoDePedido, j)<<endl;
 
-    cout<<"El costo total de los pedidos que llegaron a la provincia de Cordoba es: "<<costototalcordoba (CostoDelPedido, ProvinciaDestino, j)<<endl;
+    cout<<"El costo total de los pedidos que llegaron a la provincia de Cordoba es: "<<costototalcordoba (CostoDelPedido, ProvinciaDestino, j)<<"$"<<endl;
 
     cout<<"El porcentaje de pedidos facrurados por Raul es: "<< porcentajepedidosraul (Responsable, j)<< "%" <<endl;
 
     cout<<"El porcentaje de pedidos que pesan entre 90 y 120 kilos es: "<<porcentajePeso90a120(PesoDelPedido, j)<<"%"<<endl;
 
-    cout<<"La cantidad de pedidos menorea a 50 kilos es: "<<Pedidosmenores50Kg(PesoDelPedido, j)<<endl;
+    cout<<"La cantidad de pedidos menores a a 50 kilos es: "<<Pedidosmenores50Kg(PesoDelPedido, j)<<endl;
 
-    if(CodigoCatamarca(j, CodigoDePedido, PesoDelPedido, ProvinciaDestino)==-1){
-        cout<<"No hay ningun pedido cuyo destino sea Catamarca"<<endl;
-    }else{
-        cout<<"El codigo del pedido mas liviano que llego a la provincia de Catamarca es: "<<CodigoCatamarca(j, CodigoDePedido, PesoDelPedido, ProvinciaDestino)<<endl;
-    }
+    cout<<"El codigo del pedido mas liviano que llego a la provincia de Catamarca es: ";
+    CodigoCatamarca(j, CodigoDePedido, PesoDelPedido, ProvinciaDestino);
+    cout<<endl;
 
-    cout<<"El porcentaje de pedidos entre 200 y 500 kilos es: "<<porcentajepedidosentre200y500kilos (PesoDelPedido,j)<<endl;
+    cout<<"El porcentaje de pedidos entre 200 y 500 kilos es: "<<porcentajepedidosentre200y500kilos (PesoDelPedido,j)<<"%"<<endl;
 
     cout<<"El dinero facturado por todas las provincias es: "<<Totalfacturadopais(j, CostoDelPedido)<<"$"<<endl;
 
-    cout<<"Total facturado por pedidos cuyo responsable no sea Raul: "<<pedidosquenosonderaul (Responsable, CostoDelPedido, j)<<endl;
+    cout<<"Total facturado por pedidos cuyo responsable no sea Raul: "<<pedidosquenosonderaul (Responsable, CostoDelPedido, j)<<"$"<<endl;
 
-    cout<<"DNI del responsable con el pedido mas costoso dentro de la provincia de Ushuaia: " << dnipedidocostosoushuaia (DNIResponsable, CostoDelPedido, ProvinciaDestino,  j )<<endl;
+    cout<<"DNI del responsable con el pedido mas costoso dentro de la provincia de Ushuaia: ";
+    dnipedidocostosoushuaia (DNIResponsable, CostoDelPedido, ProvinciaDestino,  j );
+    cout<<endl;
+
+    cout<<"DNI de todos los responsables ordenados de menor a mayor: "<<endl;
+    OrdenarDNIresponsables(DNIResponsable, j);
+    cout<<endl;
 }
