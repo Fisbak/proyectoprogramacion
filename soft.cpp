@@ -139,8 +139,23 @@ int CodigoCatamarca(int J, int Codigos[], float Peso[], string provinciadestino[
     }
 }
 
+float porcentajepedidosentre200y500kilos (float PesoDelPedido[], int j ){
+    int contador=0;
+
+    
+    for(int i=0;i<j;i++){
+
+        
+        if (PesoDelPedido[i]<=500 && PesoDelPedido[i]>=200){
+            contador++;
+
+        }
+
+    }
+    return (contador *100)/j;
 
 
+}
 
 float Totalfacturadopais(int J, float Costo[]){
     float cont=0;
@@ -150,6 +165,9 @@ float Totalfacturadopais(int J, float Costo[]){
     }
     return cont;
 }
+
+
+
 
 int main(){
     int CodigoDePedido[100], DNIResponsable[100], i=0, j=0;
@@ -220,12 +238,10 @@ int main(){
         cout<<"El codigo del pedido mas liviano que llego a la provincia de Catamarca es: "<<CodigoCatamarca(j, CodigoDePedido, PesoDelPedido, ProvinciaDestino)<<endl;
     }
 
+    cout<<"El porcentaje de pedidos entre 200 y 500 kilos es: "<<porcentajepedidosentre200y500kilos (PesoDelPedido,j)<<endl;
 
-
-
-
-    //ej12
     cout<<"El dinero facturado por todas las provincias es: "<<Totalfacturadopais(j, CostoDelPedido)<<"$"<<endl;
 
 
+   
 }
