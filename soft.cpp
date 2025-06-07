@@ -1,16 +1,28 @@
 #include <iostream>
 using namespace std;
 
-int PedidosNombreDeCarlos(string responsable[100], int J){
-    int cont=0, i;
+void PedidosNombreDeCarlos(string responsable[100], int J) {
+    int cont = 0;
 
-    for(i=0; i<J; i++){
-        if(responsable[i]=="Carlos"||responsable[i]=="carlos"){
+    cout << "Los pedidos facturados a nombre de Carlos son: ";
+
+    for (int i = 0; i < J; i++) {
+        if (responsable[i] == "Carlos" || responsable[i] == "carlos") {
+            if (cont > 0) {
+                cout << ", ";
+            }
+            cout << "pedido " << i + 1;
             cont++;
         }
     }
-    return cont;
+
+    if (cont == 0) {
+        cout << "ninguno";
+    }
+
+    cout << "." << endl;
 }
+
 
 float porcentajePedidosPesoMedio(float PesoDelPedido[], int totalPedidos) {
     int contador = 0;
@@ -172,6 +184,35 @@ int dnipedidocostosoushuaia (int DNIResponsable[], float CostoDelPedido[], strin
 return dniushuaia;
 }
 
+void OrdenarDNIresponsables(int  DNIResponsable[], int j) {
+    int i, j, band, Aux;
+
+    for (i = 0; i < j; i++) {
+
+        band = 0;  
+
+        while (band == 0) {
+            band = 1;
+
+            for (j = 0; j < j - 1; j++) {
+                if (DNIResponsable[j] > DNIResponsable[j + 1]) {
+                    Aux = DNIResponsable[j];
+                    DNIResponsable[j] = DNIResponsable[j + 1];
+                    DNIResponsable[j + 1] = Aux;
+                    band = 0;
+                }
+            }
+        }
+    }
+
+    for (i = 0; i < j; i++) {
+        cout << DNIResponsable[i] << " ";
+    }
+    cout << endl;
+}
+
+
+
 int main(){
     int CodigoDePedido[100], DNIResponsable[100], i=0, j=0;
     float PesoDelPedido[100], CostoDelPedido[100];
@@ -216,7 +257,9 @@ int main(){
 
 
 
-    cout<<"La cantidad de pedidos facturados a nombre de Carlos son: "<<PedidosNombreDeCarlos(Responsable, j)<<endl;
+    cout<<"Los pedidos facturados a nombre de Carlos son: "<<endl;
+    PedidosNombreDeCarlos(Responsable, j);
+    cout<<endl;
 
     float porcentaje = porcentajePedidosPesoMedio(PesoDelPedido, j);
     cout << "El porcentaje de pedidos entre 50 y 100 kg es: " << porcentaje << "%" << endl;
@@ -240,4 +283,9 @@ int main(){
     cout<<"Total facturado por pedidos cuyo responsable no sea Raul: "<<pedidosquenosonderaul (Responsable, CostoDelPedido, j)<<endl;
 
     cout<<"DNI del responsable con el pedido mas costoso dentro de la provincia de Ushuaia: " << dnipedidocostosoushuaia (DNIResponsable, CostoDelPedido, ProvinciaDestino,  j )<<endl;
+
+    cout<<"DNI de todos los responsables ordenados de menor a mayor: "<<endl;
+    OrdenarDNIresponsables(DNIResponsable, j);
+    cout<<endl;
+
 }
