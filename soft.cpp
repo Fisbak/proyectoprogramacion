@@ -1,7 +1,40 @@
 #include <iostream>
 using namespace std;
 
-int PedidosNombreDeCarlos(string responsable[100], int J){
+string ProvinciaMaspedidos(int J, string Provincia[]){
+    int bsas=0, cor=0, Juj=0, SDE=0, Sal=0, i;
+
+    for(i=0; i < J; i++){
+        if(Provincia[i]=="BuenosAires" || Provincia[i]=="buenosaires")
+        {bsas++;}
+
+        if(Provincia[i]=="Cordoba" || Provincia[i]=="cordoba")
+        {cor++;}
+
+        if(Provincia[i]=="Jujuy" || Provincia[i]=="jujuy")
+        {Juj++;}
+
+        if(Provincia[i]=="SantiagoDelEstero" || Provincia[i]=="santiagodelestero")
+        {SDE++;}
+
+        if(Provincia[i]=="Salta" || Provincia[i]=="salta")
+        {Sal++;}
+
+    }
+
+    if(bsas>cor){if(bsas>Juj){if(bsas>SDE){if(bsas>Sal){ return "Buenos Aires";}}}}
+
+    if(cor>bsas){if(cor>Juj){if(cor>SDE){if(cor>Sal){ return "Cordoba";}}}}
+
+    if(Juj>bsas){if(Juj>cor){if(Juj>SDE){if(Juj>Sal){ return "Jujuy";}}}}
+
+    if(SDE>bsas){if(SDE>cor){if(SDE>Juj){if(SDE>Sal){ return "Santiago Del Estero";}}}}
+
+    if(Sal>bsas){if(Sal>cor){if(Sal>SDE){if(Sal>Juj){ return "Salta";}}}}
+}
+
+
+int PedidosNombreDeCarlos(string responsable[], int J){
     int cont=0, i;
 
     for(i=0; i<J; i++){
@@ -26,7 +59,7 @@ float porcentajePedidosPesoMedio(float PesoDelPedido[], int totalPedidos) {
     return (contador * 100.0) / totalPedidos;
 }
 
-int DNIpedidoPesado(int DNIdelResp[100], float Pesopedido[100], int  J){
+int DNIpedidoPesado(int DNIdelResp[], float Pesopedido[], int  J){
     float max=0;
     int i, Dnimax;
 
@@ -40,7 +73,7 @@ int DNIpedidoPesado(int DNIdelResp[100], float Pesopedido[100], int  J){
     return Dnimax;
 }
 
-string PedidomenosPesadoJujuy(int J, string responsable[100], float peso[100], string provdestino[100]){
+string PedidomenosPesadoJujuy(int J, string responsable[], float peso[], string provdestino[]){
     float min=10000000;
     int i, valormin=-1;
 
@@ -61,7 +94,7 @@ string PedidomenosPesadoJujuy(int J, string responsable[100], float peso[100], s
     }
 }
 
-int dnidelcodigo(int Dni[100], int codigo[100], int J){
+int dnidelcodigo(int Dni[], int codigo[], int J){
     int i, num;
     
     for(i=0; i < J; i++){
@@ -177,7 +210,7 @@ int main(){
 
     while(i==0){
 
-        cout<<"Ingrese la provincia en la que se fabrico el pedido "<<j+1<<" (poner el nombre todo junto, ej: Buenos Aires seria BuenosAires)"<<endl;
+        cout<<"Ingrese la provincia en la que se fabrico el pedido "<<j+1<<" (poner el nombre todo junto y en minusculas, ej: Buenos Aires seria buenosaires)"<<endl;
         cin>>ProvinciaOrigen[j];
 
 
@@ -187,7 +220,7 @@ int main(){
         cout<<"Ingrese el peso(en kilogramos) del pedido "<<j+1<<endl;
         cin>>PesoDelPedido[j];
 
-        cout<<"Ingrese la provincia a la que debe llegar el pedido "<<j+1<<" (poner el nombre todo junto, ej: Buenos Aires seria BuenosAires)"<<endl;
+        cout<<"Ingrese la provincia a la que debe llegar el pedido "<<j+1<<" (poner el nombre todo junto y en minusculas, ej: Buenos Aires seria buenosaires)"<<endl;
         cin>>ProvinciaDestino[j];
 
         cout<<"Ingrese el costo del pedido "<<j+1<<endl;
@@ -211,7 +244,7 @@ int main(){
 
     }
 
-
+    cout<<"La provincia cuya fabrica recibe mas pedidos es: "<<ProvinciaMaspedidos(j, ProvinciaOrigen)<<endl;
 
     cout<<"La cantidad de pedidos facturados a nombre de Carlos son: "<<PedidosNombreDeCarlos(Responsable, j)<<endl;
 
